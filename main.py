@@ -4,8 +4,10 @@ from body import Body
 import time
 import sys
 import pygame.font
+import random
 
 WIDTH, HEIGHT = 640, 480
+CHAOS = True
 
 #one frame is 1 second
 FPS = 60
@@ -53,6 +55,16 @@ def main():
     pygame.font.init()
     bodys.append(moon)
 
+    if CHAOS:
+        for i in range(20):
+            rand_pos = (random.randint(-10**10, 10**10), random.randint(-10**10, 10**10))
+            rand_vel = (random.randint(-10**1, 10**1), random.randint(-10**1, 10**1))
+            rand_mass = random.randint(10**20, 10**25)
+            rand_radius = random.randint(1, 10)
+            rand_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+            temp_body = Body(rand_pos, rand_vel, rand_mass, rand_radius, rand_color)
+            bodys.append(temp_body)
+
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     last_frame = time.time()
@@ -79,7 +91,7 @@ def main():
             b.draw(screen)
 
         sleeptime = 1/FPS - (time.time() - last_frame)
-        if t%365 == 0:
+        if t%365 == 0 and not CHAOS:
             sleeptime = 1
         
         if sleeptime < 0:
