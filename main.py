@@ -3,6 +3,7 @@ from pygame.locals import *
 from body import Body
 import time
 import sys
+import pygame.font
 
 WIDTH, HEIGHT = 640, 480
 
@@ -40,11 +41,12 @@ def main():
     bodys = []
     bodys.append(sun)
     bodys.append(earth)
-
+    pygame.init()
+    pygame.font.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     last_frame = time.time()
-
+    font = pygame.font.SysFont(None, 30)
     while True:
         #clear page so that the old circle is not still there
         screen.fill((0, 0, 0))
@@ -68,15 +70,19 @@ def main():
 
         sleeptime = 1/FPS - (time.time() - last_frame)
         if t%365 == 0:
-            sleeptime = 2
+            sleeptime = 1
         
         if sleeptime < 0:
             sleeptime = 0
         time.sleep(sleeptime)
         last_frame = time.time()
-        pygame.display.flip()
         t = t + 1
-        print(t)
+        # Render text onto surface
+        text_surface = font.render(f"T = {t//365} years and {t%365} days", False, (0,255,255))
+        # Blit surface onto screen
+        screen.blit(text_surface, (0,0))
+        
+        pygame.display.flip()
         
 
 if __name__ == "__main__":
