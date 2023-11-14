@@ -9,8 +9,9 @@ WIDTH, HEIGHT = 640, 480
 #one frame is 1 second
 FPS = 60
 
-def main():
 
+def main():
+    t = 0
     #Sun position center = 0,0
     sun_pos = (0, 0)
     #Sun velocity = ???, 0 kanske??
@@ -66,11 +67,16 @@ def main():
             b.draw(screen)
 
         sleeptime = 1/FPS - (time.time() - last_frame)
+        if t%365 == 0:
+            sleeptime = 2
+        
         if sleeptime < 0:
             sleeptime = 0
         time.sleep(sleeptime)
         last_frame = time.time()
         pygame.display.flip()
+        t = t + 1
+        print(t)
         
 
 if __name__ == "__main__":
