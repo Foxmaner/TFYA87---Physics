@@ -36,10 +36,19 @@ def main():
     earth_color = (0, 0, 255)
     earth = Body(earth_pos, earth_v, earth_mass, earth_radius, earth_color)
     #earth = Body(earth_pos, (0, 0), earth_mass, earth_radius, earth_color)
+
+    moon_pos = (1.496*(10**8)*1000 + 384400 * 1000, 0)
+    moon_v = (0, 107200 * 0.277777778 + 1023)
+    moon_mass = 7.34767309 * (10**22)
+    moon_radius = 3
+    moon_color = (200, 200, 200)
+    moon = Body(moon_pos, moon_v, moon_mass, moon_radius, moon_color)
+
     #stores the bodys in a list
     bodys = []
     bodys.append(sun)
     bodys.append(earth)
+    bodys.append(moon)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
