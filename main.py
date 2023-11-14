@@ -38,7 +38,7 @@ def main():
     earth = Body(earth_pos, earth_v, earth_mass, earth_radius, earth_color)
     #earth = Body(earth_pos, (0, 0), earth_mass, earth_radius, earth_color)
 
-    moon_pos = (1.496*(10**8)*1000 + 384400 * 1000, 0)
+    moon_pos = (1.496*(10**8)*1000 + 384400 * 1000 + (10**10), 0)
     moon_v = (0, 107200 * 0.277777778 + 1023)
     moon_mass = 7.34767309 * (10**22)
     moon_radius = 3
