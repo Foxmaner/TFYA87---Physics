@@ -40,7 +40,6 @@ def main():
     bodys.append(sun)
     bodys.append(earth)
 
-    print("Hello World!")
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     last_frame = time.time()

@@ -21,10 +21,10 @@ class Body():
 
     def update_pos(self):
         #update the position of the body
-        self.position[0] += self.velocity[0]
-        self.position[1] += self.velocity[1]
+        self.position[0] += self.velocity[0] * 86400
+        self.position[1] += self.velocity[1] * 86400
 
-    def calc_velocity(self, other, time_step=86400*30):
+    def calc_velocity(self, other, time_step=86400):
         G = 6.6743e-11  # gravitational constant
         dx = other.position[0] - self.position[0]
         dy = other.position[1] - self.position[1]
