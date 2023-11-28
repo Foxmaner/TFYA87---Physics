@@ -6,8 +6,12 @@ import sys
 import pygame.font
 import random
 
-WIDTH, HEIGHT = 640, 480
-CHAOS = True
+WIDTH, HEIGHT = 640 *2, 480*2
+CHAOS = False
+include_jupiter = True
+jupiter_close = True
+jupiter_heavier = True
+
 
 #one frame is 1 second
 FPS = 60
@@ -15,30 +19,20 @@ FPS = 60
 
 def main():
     t = 0
-    #Sun position center = 0,0
+
     sun_pos = (0, 0)
-    #Sun velocity = ???, 0 kanske??
     sun_v = (0, 0)
-    #Sun mass = 1.9885×10^30 kg, 332950 x earths mass
     sun_mass = 1.9885*(10**30)
-    #Sun radius = 696,342 km, 109 x earths radius, kan bli svårt med en helt skalenlig representation
     sun_radius = 30
-    #Sun color = gul
     sun_color = (255, 255, 0)
     sun = Body(sun_pos, sun_v, sun_mass, sun_radius, sun_color)
-    #Earth position. mean distance to sun = 1.496×10^8 km.
-    #23481 x earths radius. and convert to m
+
     earth_pos = (1.496*(10**8)*1000, 0)
-    #Earth velocity = 107,200 km/h orbiting around the sun
-    # made to m/s = 29,7777778 m/s
     earth_v = (0, 107200 * 0.277777778)
-    #Earth mass = 5.972168×10^24 kg
     earth_mass = 5.972168*(10**24)
-    #Earth mean radius = 6371 km
     earth_radius = 10
     earth_color = (0, 0, 255)
     earth = Body(earth_pos, earth_v, earth_mass, earth_radius, earth_color)
-    #earth = Body(earth_pos, (0, 0), earth_mass, earth_radius, earth_color)
 
     moon_pos = (1.496*(10**8)*1000 + 384400 * 1000 + (10**10), 0)
     moon_v = (0, 107200 * 0.277777778 + 1023)
@@ -54,6 +48,21 @@ def main():
     pygame.init()
     pygame.font.init()
     bodys.append(moon)
+
+    if include_jupiter:
+        if jupiter_close:
+            jupiter_pos = (778000000*500, 0)
+        else:
+            jupiter_pos = (778000000*1000, 0)
+        jupiter_v = (0, 47051 * 0.277777778)
+        if jupiter_heavier:
+            jupiter_mass = (1898.13 * 10 ** 25)
+        else:
+            jupiter_mass = (1898.13 * 10**24)
+        jupiter_radius = 15
+        jupiter_color = (151, 134, 94)
+        jupiter = Body(jupiter_pos, jupiter_v, jupiter_mass, jupiter_radius, jupiter_color)
+        bodys.append(jupiter)
 
     if CHAOS:
         for i in range(20):

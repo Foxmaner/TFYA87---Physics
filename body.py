@@ -13,8 +13,8 @@ class Body():
 
     def draw(self, screen):
         #we take the position and add half of the screen size to it so that the center of the screen is 0,0
-        coordsX = (self.position[0]/1000000000) + screen.get_size()[0]/2
-        coordsY = (self.position[1]/1000000000) + screen.get_size()[1]/2
+        coordsX = (self.position[0]/2000000000) + screen.get_size()[0]/2
+        coordsY = (self.position[1]/2000000000) + screen.get_size()[1]/2
 
         #Prints the circle
         pygame.draw.circle(screen, self.collor, (coordsX, coordsY), self.radius)
