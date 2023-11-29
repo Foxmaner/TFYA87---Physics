@@ -9,6 +9,7 @@ class Body():
         self.position = [position[0], position[1]]    # (x, y)
         self.velocity = [velocity[0], velocity[1]]    # (x, y)
         self.collor = collor        # (r, g, b)
+        self.trail = []
 
 
     def draw(self, screen):
@@ -18,6 +19,12 @@ class Body():
 
         #Prints the circle
         pygame.draw.circle(screen, self.collor, (coordsX, coordsY), self.radius)
+
+        self.trail.insert(0, (coordsX, coordsY))
+        if len(self.trail) > 100:
+            self.trail.pop(100)
+        for dot in self.trail:
+            pygame.draw.circle(screen, self.collor, dot, 1)
 
     def update_pos(self):
         #update the position of the body
