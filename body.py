@@ -1,7 +1,5 @@
 import pygame
 
-
-
 class Body():
     def __init__(self, position, velocity, mass, radius, collor):
         self.mass = mass
@@ -32,7 +30,7 @@ class Body():
         self.position[0] += self.velocity[0] * 86400
         self.position[1] += self.velocity[1] * 86400
 
-    def calc_velocity(self, other, time_step=86400):
+    def calc_velocity(self, other, time_step=86400, max_acceleration=1e-5):
         G = 6.6743e-11  # gravitational constant
         dx = other.position[0] - self.position[0]
         dy = other.position[1] - self.position[1]
@@ -40,6 +38,10 @@ class Body():
         force = G * (self.mass * other.mass) / (dist**2)
         ax = force / self.mass * (dx / dist)
         ay = force / self.mass * (dy / dist)
+
+        #Limiting acceleration to avoid planets flying away
+        ax = max(-max_acceleration, min(ax, max_acceleration))
+        ay = max(-max_acceleration, min(ay, max_acceleration))
 
         # other body velocity is affected by mass
         self.velocity[0] += ax * time_step

@@ -1,7 +1,5 @@
 from body import Body
 
-
-
 def create_sun():
     sun_pos = (0, 0)
     sun_v = (0, 0)

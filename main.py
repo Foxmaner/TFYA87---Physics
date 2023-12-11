@@ -13,10 +13,8 @@ include_jupiter = True
 jupiter_close = True
 jupiter_heavier = True
 
-
 #one frame is 1 second
 FPS = 60
-
 
 def main():
     t = 0
