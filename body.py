@@ -28,6 +28,7 @@ class Body():
 
     def update_pos(self):
         #update the position of the body
+        #multiplied by seconds in a day
         self.position[0] += self.velocity[0] * 86400
         self.position[1] += self.velocity[1] * 86400
 
@@ -40,6 +41,7 @@ class Body():
         ax = force / self.mass * (dx / dist)
         ay = force / self.mass * (dy / dist)
 
+        # other body velocity is affected by mass
         self.velocity[0] += ax * time_step
         self.velocity[1] += ay * time_step
         other.velocity[0] -= ax * self.mass / other.mass * time_step
