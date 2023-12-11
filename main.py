@@ -9,7 +9,7 @@ from planets import *
 
 WIDTH, HEIGHT = 640 *2, 480*2
 CHAOS = False
-include_jupiter = False
+include_jupiter = True
 jupiter_close = True
 jupiter_heavier = True
 
