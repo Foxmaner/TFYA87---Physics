@@ -62,7 +62,7 @@ def main():
         jupiter_radius = 15
         jupiter_color = (151, 134, 94)
         jupiter = Body(jupiter_pos, jupiter_v, jupiter_mass, jupiter_radius, jupiter_color)
-        bodys.append(jupiter)
+        #bodys.append(jupiter)
 
     if CHAOS:
         for i in range(20):
@@ -99,7 +99,7 @@ def main():
         for b in bodys:
             b.draw(screen)
 
-        sleeptime = 1/FPS - (time.time() - last_frame)
+        sleeptime = (time.time() - last_frame)
         if t%365 == 0 and not CHAOS:
             sleeptime = 1
         
