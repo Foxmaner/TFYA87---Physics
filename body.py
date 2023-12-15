@@ -1,5 +1,6 @@
 import pygame
 
+
 class Body():
     def __init__(self, position, velocity, mass, radius, collor):
         self.mass = mass
@@ -9,9 +10,8 @@ class Body():
         self.collor = collor        # (r, g, b)
         self.trail = []
 
-
     def draw(self, screen):
-        #we take the position and add half of the screen size to it so that the center of the screen is 0,0
+        # We take the position and add half of the screen size to it so that the center of the screen is 0,0
         coordsX = (self.position[0]/2000000000) + screen.get_size()[0]/2
         coordsY = (self.position[1]/2000000000) + screen.get_size()[1]/2
 
@@ -35,13 +35,15 @@ class Body():
         dx = other.position[0] - self.position[0]
         dy = other.position[1] - self.position[1]
         dist = (dx**2 + dy**2)**0.5
+        if dist < 10000000000:
+            dist = 10000000000
         force = G * (self.mass * other.mass) / (dist**2)
         ax = force / self.mass * (dx / dist)
         ay = force / self.mass * (dy / dist)
 
         #Limiting acceleration to avoid planets flying away
-        ax = max(-max_acceleration, min(ax, max_acceleration))
-        ay = max(-max_acceleration, min(ay, max_acceleration))
+        #ax = max(-max_acceleration, min(ax, max_acceleration))
+        #ay = max(-max_acceleration, min(ay, max_acceleration))
 
         # other body velocity is affected by mass
         self.velocity[0] += ax * time_step
